@@ -30,7 +30,7 @@ public class reader1 {
 		System.out.println(main.mnk(text));
 		
 		
-		// Запись данных в файл
+		// Запись данных в файл   
 		try (FileOutputStream fos = new FileOutputStream("/Users/maxim/close.txt")) {
 			for (int i = 0; i < text.size(); i++) {
 				// перевод строки в байты
