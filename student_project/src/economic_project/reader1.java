@@ -41,7 +41,7 @@ public class reader1 {
 		} catch (IOException ex) {
 
 			System.out.println(ex.getMessage());
-		}
+		}//sdf-
 		System.out.println("The file has been written");
 
 		
