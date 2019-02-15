@@ -44,7 +44,7 @@ public class reader1 {
 		}
 		System.out.println("The file has been written");
 
-		// kek
+		
 
 	}
 }
