@@ -20,7 +20,7 @@ public class reader1 {
 			while ((str = br.readLine()) != null) {
 				text.addAll(Arrays.asList(str.split(" ")));
 
-			}
+			}//sdfsd
 			br.close();
 		} catch (IOException exc) {
 			System.out.println("IO error!" + exc);// some
