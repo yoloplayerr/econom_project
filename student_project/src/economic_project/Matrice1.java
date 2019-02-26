@@ -1,12 +1,20 @@
 package economic_project;
 
+import java.util.ArrayList;
+
 import Jama.Matrix;
 
 
 public class Matrice1 {
 	double[] z=new double[3];
 	
-	public static void main(String[] args) {
+	public static ArrayList<Double> New_close(ArrayList<Double> O, ArrayList<Double> H, ArrayList<Double> L ,ArrayList<Double> C) {
+		ArrayList<Double> Open=O;
+		ArrayList<Double> High=H;
+		ArrayList<Double> Low=L;
+		ArrayList<Double> Close=C;
+		ArrayList<Double> New_Close=new ArrayList<>();
+	
 		double[][] x=new double[][]{{2,4,5,6,8},{4,7,3,2,1},{2,40,8,90,1},{4,5,60,7,80}};// some comment
 		double[] y=new double[] { 20 , 40, 570,760,800};
 	double[][]f=new double[3][5];
@@ -23,11 +31,12 @@ public class Matrice1 {
 				System.out.println("f[1]["+k+"]="+f[1][k]);
 				System.out.println("f[2]["+k+"]="+f[2][k]);
 				}
-			Matrice1 H= new Matrice1();
-			H.test(f, y);
-			H.R(f, y);
+			Matrice1 He= new Matrice1();
+			He.test(f, y);
+			He.R(f, y);
 			}
-		}	 
+		}
+		return New_Close;	 
 	}
 	
 			public void test(double[][]ff, double[]yy){
