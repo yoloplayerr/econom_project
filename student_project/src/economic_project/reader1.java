@@ -23,17 +23,17 @@ public class reader1 {
 			}
 			br.close();
 		} catch (IOException exc) {
-			System.out.println("IO error!" + exc);// some
+			System.out.println("IO error!" + exc);
 		}
-		text.get(1).substring(1, 1);
 		
-		Matrice1.New_close(getOpen(text),getHigh(text),getLow(text),getClose(text));
+		// Вызов функции возврающей препологаемую цену закрытия
+		System.out.println(Matrice1.New_close(getOpen(text),getHigh(text),getLow(text),getClose(text)));
 		
 		
 		
 		// Запись данных в файл
 		try (FileOutputStream fos = new FileOutputStream("/Users/maxim/close.txt")) {
-			for (int i = 0; i < text.size(); i++) {
+			for (int i = 1; i < text.size(); i++) {
 				// перевод строки в байты
 				byte[] buffer = text.get(i).getBytes();
 
@@ -45,15 +45,10 @@ public class reader1 {
 		}
 		
 		System.out.println("The file has been written");
-		System.out.println(
-				"Open" + "					" + "High" + "				" + "Low" + "					" + "Close");
-		for (int i = 0; i < getOpen(text).size(); i++) {
-			System.out.println(getOpen(text).get(i) + "					" + (getHigh(text).get(i)) + "				"
-					+ (getLow(text).get(i)) + "					" + (getClose(text).get(i)));
-		}
+
 
 	}
-
+	// Процедура возвращающая массив с ценами открытия
 	public static ArrayList<Double> getOpen(ArrayList<String> text) {
 
 		ArrayList<Double> be = new ArrayList<>();
@@ -62,8 +57,8 @@ public class reader1 {
 		}
 		return be;
 	}
-
-	public static ArrayList<Double> getHigh(ArrayList<String> text) {
+	// Процедура  возвращающая массив с наибольшей ценой 
+	public static ArrayList<Double> getHigh(ArrayList<String> text) {  
 
 		ArrayList<Double> be = new ArrayList<>();
 		for (int i = 1; i < text.size(); i++) {
@@ -71,8 +66,8 @@ public class reader1 {
 		}
 		return be;
 	}
-
-	public static ArrayList<Double> getLow(ArrayList<String> text) {
+	// функция возвращающая массив с наименьшей ценой
+	public static ArrayList<Double> getLow(ArrayList<String> text) { 
 
 		ArrayList<Double> be = new ArrayList<>();
 		for (int i = 1; i < text.size(); i++) {
@@ -80,7 +75,7 @@ public class reader1 {
 		}
 		return be;
 	}
-
+	// функция возвращающая массив с ценами закрытия
 	public static ArrayList<Double> getClose(ArrayList<String> text) {
 
 		ArrayList<Double> be = new ArrayList<>();
