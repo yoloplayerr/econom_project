@@ -2,22 +2,42 @@ package economic_project;
 
 import java.util.ArrayList;
 
+
 import Jama.Matrix;
 
-public class Matrice1 {
+public class Matrice1 extends Thread {
+	
+	public static ArrayList<Double> Open;
+	public static  ArrayList<Double> High;
+	public static ArrayList<Double> Low;
+	public static ArrayList<Double> Close; 
+	
 
-	double[] z = new double[3];
+	 public Matrice1(ArrayList<Double> O, ArrayList<Double> H, ArrayList<Double> L, ArrayList<Double> C) {
+		 	Matrice1.Open = O;
+			Matrice1.High = H;
+			Matrice1.Low = L;
+			Matrice1.Close = C;
+	   }
+	 @Override
+	// Этот метод будет вызван при старте потока
+	public void run() {
+		double det=New_close();			
+		reader.r.add(det);
+		
+					
+	}
 
-	public static double New_close(ArrayList<Double> O, ArrayList<Double> H, ArrayList<Double> L, ArrayList<Double> C) {
+	static double[] z = new double[3];
 
-		ArrayList<Double> Open = O;
-		ArrayList<Double> High = H;
-		ArrayList<Double> Low = L;
-		ArrayList<Double> Close = C;
+	public static double New_close() {
+
+		
+		
 
 		double[] y = new double[Open.size()];
-		double[][] x = new double[4][O.size()];// some comment
-		for (int i = 0; i < O.size(); i++) {
+		double[][] x = new double[4][Open.size()];// some comment
+		for (int i = 0; i < Open.size(); i++) {
 			x[0][i] = 1;
 			x[1][i] = Open.get(i);
 			x[2][i] = High.get(i);
@@ -25,14 +45,14 @@ public class Matrice1 {
 			y[i] = Close.get(i);
 		}
 
-		Matrice1 He = new Matrice1();
+		
 
-		He.determ(x, y);
-		return He.test(x, y);
+		
+		return Matrice1.determ(x, y);
 
 	}
 
-	public double test(double[][] ff, double[] yy) {
+	public static double test(double[][] ff, double[] yy) {
 		Matrix A1 = new Matrix(ff);
 		Matrix B1 = A1.transpose();
 
@@ -55,7 +75,7 @@ public class Matrice1 {
 		return real_close;
 	}
 
-	public double determ(double[][] ff, double[] yy) {
+	public static double determ(double[][] ff, double[] yy) {
 		double r = 0, S1 = 0, S2 = 0, S3 = 0;
 		double[] u1 = new double[yy.length];
 		double[] u2 = new double[yy.length];
@@ -72,7 +92,8 @@ public class Matrice1 {
 			S2 += u2[m];
 		}
 		r = 1 - S1 / S2;
-		System.out.println("r=" + r);
+		
 		return r;
 	}
+
 }
