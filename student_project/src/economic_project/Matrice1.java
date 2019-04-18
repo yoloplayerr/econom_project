@@ -12,7 +12,6 @@ public class Matrice1 extends Thread {
 	public static ArrayList<Double> Low;
 	public static ArrayList<Double> Close; 
 	
-
 	 public Matrice1(ArrayList<Double> O, ArrayList<Double> H, ArrayList<Double> L, ArrayList<Double> C) {
 		 	Matrice1.Open = O;
 			Matrice1.High = H;
@@ -20,7 +19,9 @@ public class Matrice1 extends Thread {
 			Matrice1.Close = C;
 	   }
 	 @Override
-	// Этот метод будет вызван при старте потока
+	/**
+	 *  Этот метод будет вызван при старте потока
+	 */
 	public void run() {
 		double det=New_close();			
 		reader.r.add(det);
@@ -31,10 +32,6 @@ public class Matrice1 extends Thread {
 	static double[] z = new double[3];
 
 	public static double New_close() {
-
-		
-		
-
 		double[] y = new double[Open.size()];
 		double[][] x = new double[4][Open.size()];// some comment
 		for (int i = 0; i < Open.size(); i++) {
@@ -44,12 +41,8 @@ public class Matrice1 extends Thread {
 			x[3][i] = Low.get(i);
 			y[i] = Close.get(i);
 		}
-
-		
-
 		
 		return Matrice1.determ(x, y);
-
 	}
 
 	public static double test(double[][] ff, double[] yy) {
@@ -74,7 +67,12 @@ public class Matrice1 extends Thread {
 		real_close = z[0] + z[1] * open + z[2] * high + z[3] * low;
 		return real_close;
 	}
-
+	/**
+	 * Функция возращающая коэф детерминации
+	 * @param ff
+	 * @param yy
+	 * @return
+	 */
 	public static double determ(double[][] ff, double[] yy) {
 		double r = 0, S1 = 0, S2 = 0, S3 = 0;
 		double[] u1 = new double[yy.length];
