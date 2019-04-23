@@ -9,12 +9,10 @@ public class Data {
 		 * @return
 		 */
 		public double getValueOfZ(int i) {
-			double value=0;
-		
-				value=z[i];
+			
 		
 				
-			return value;
+			return z[i];
 		}
 		public double[] getZ() {
 			return z;

@@ -9,7 +9,7 @@ public class Matrice1 extends Thread {
 	public static ArrayList<Data> data=new ArrayList<>();
 	
 
-	public static double New_close(ArrayList<Double> Open, ArrayList<Double> High, ArrayList<Double> Low, ArrayList<Double> Close) {
+	public static void New_close(ArrayList<Double> Open, ArrayList<Double> High, ArrayList<Double> Low, ArrayList<Double> Close) {
 		double[] y = new double[Open.size()];
 		double[][] x = new double[4][Open.size()];
 
@@ -21,7 +21,7 @@ public class Matrice1 extends Thread {
 			y[i] = Close.get(i);
 		}
 		test(x,y);
-		return 0;
+		
 		
 	}
 	
@@ -60,7 +60,7 @@ public class Matrice1 extends Thread {
 		/**
 		 *  Создание обьекта Класса Data,
 		 *  Обьект Data содержит в себе массив коэффициентов уравнения(z) и коэф. детерминации
-		 *  Заносим этот обьект в список обьектов Data
+		 *  Заносим этот обьект в список обьектов data
 		 *  Каждый раз при вызове этой функции создается новый обьект Data с новыми значениями
 		 */
 		Data dannie=new Data();

@@ -45,7 +45,7 @@ public class Reader {
 		}
 
 		try {
-			//Этот
+			
 			 Matrice1.New_close(getOpen(text, 30), getHigh(text, 30), getLow(text, 30), getClose(text, 30));
 			 Matrice1.New_close(getOpen(text, 60), getHigh(text, 60), getLow(text, 60), getClose(text, 60));
 			 Matrice1.New_close(getOpen(text, 90), getHigh(text, 90), getLow(text, 90), getClose(text, 90));
@@ -71,12 +71,11 @@ public class Reader {
 		for (int i = 0; i < Matrice1.data.size(); i++) {
 			tree.root = tree.insert(tree.root, Matrice1.data.get(i).getDeterm());
 		}
-		//Вывод ключей
-		tree.preOrder(tree.root);
+		
 		
 		try {
 			
-			FileWriter fw = new FileWriter("/Users/maxim/close.txt");
+			FileWriter fw = new FileWriter("/Users/maxim/коэффициенты.txt");
 			PrintWriter writer = new PrintWriter(fw);
 			
 			for(int i=0;i<Matrice1.data.size();i++) { //Идем по циклу пока не закончатся обьекты data хранящие в себе данные
