@@ -2,38 +2,17 @@ package economic_project;
 
 import java.util.ArrayList;
 
-
 import Jama.Matrix;
 
 public class Matrice1 extends Thread {
-	
-	public static ArrayList<Double> Open;
-	public static  ArrayList<Double> High;
-	public static ArrayList<Double> Low;
-	public static ArrayList<Double> Close; 
-	
-	 public Matrice1(ArrayList<Double> O, ArrayList<Double> H, ArrayList<Double> L, ArrayList<Double> C) {
-		 	Matrice1.Open = O;
-			Matrice1.High = H;
-			Matrice1.Low = L;
-			Matrice1.Close = C;
-	   }
-	 @Override
-	/**
-	 *  Этот метод будет вызван при старте потока
-	 */
-	public void run() {
-		double det=New_close();			
-		reader.r.add(det);
-		
-					
-	}
 
-	static double[] z = new double[3];
+	public static ArrayList<Data> data=new ArrayList<>();
+	
 
-	public static double New_close() {
+	public static double New_close(ArrayList<Double> Open, ArrayList<Double> High, ArrayList<Double> Low, ArrayList<Double> Close) {
 		double[] y = new double[Open.size()];
-		double[][] x = new double[4][Open.size()];// some comment
+		double[][] x = new double[4][Open.size()];
+
 		for (int i = 0; i < Open.size(); i++) {
 			x[0][i] = 1;
 			x[1][i] = Open.get(i);
@@ -41,11 +20,14 @@ public class Matrice1 extends Thread {
 			x[3][i] = Low.get(i);
 			y[i] = Close.get(i);
 		}
+		test(x,y);
+		return 0;
 		
-		return Matrice1.determ(x, y);
 	}
-
-	public static double test(double[][] ff, double[] yy) {
+	
+	public static void test(double[][] ff, double[] yy) {
+		 double[] z = new double[3];
+		// Вычисление коэффициентов z 
 		Matrix A1 = new Matrix(ff);
 		Matrix B1 = A1.transpose();
 
@@ -56,24 +38,9 @@ public class Matrice1 extends Thread {
 
 		Matrix C = new Matrix(yy, yy.length);
 		Matrix F3 = F2.times(C);
-
-		z = F3.getColumnPackedCopy();
-
-		double open = 1.1338700;
-		double high = 1.1351600;
-		double low = 1.1329000;
-		double real_close = 0;
-		double close = 1.1339100;
-		real_close = z[0] + z[1] * open + z[2] * high + z[3] * low;
-		return real_close;
-	}
-	/**
-	 * Функция возращающая коэф детерминации
-	 * @param ff
-	 * @param yy
-	 * @return
-	 */
-	public static double determ(double[][] ff, double[] yy) {
+		
+		z = F3.getColumnPackedCopy();		
+		//Вычесление коэффициента детерминации
 		double r = 0, S1 = 0, S2 = 0, S3 = 0;
 		double[] u1 = new double[yy.length];
 		double[] u2 = new double[yy.length];
@@ -90,8 +57,19 @@ public class Matrice1 extends Thread {
 			S2 += u2[m];
 		}
 		r = 1 - S1 / S2;
+		/**
+		 *  Создание обьекта Класса Data,
+		 *  Обьект Data содержит в себе массив коэффициентов уравнения(z) и коэф. детерминации
+		 *  Заносим этот обьект в список обьектов Data
+		 *  Каждый раз при вызове этой функции создается новый обьект Data с новыми значениями
+		 */
+		Data dannie=new Data();
+		dannie.setZ(z);
+		dannie.setDeterm(r);
+		data.add(dannie);	
+	
 		
-		return r;
 	}
+	
 
 }

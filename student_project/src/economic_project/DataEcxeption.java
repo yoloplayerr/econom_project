@@ -5,12 +5,16 @@ class DataException extends Exception {
 	private double number;
 
 	public DataException(String message, Double num) {
-		super(message);
+		
+		super(message);//Вызов конструктора класса Exception 
 		number = num;
 	}
 
 	
-
+	/**
+	 * Если в файле исходных данных поменять значение на неверное,то вернется это значение
+	 * @return
+	 */
 	public double getNumber() {
 		return number;
 	}

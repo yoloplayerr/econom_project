@@ -6,9 +6,9 @@ import java.util.Date;
 public class RB {
 	public static int p=997;
 	public static int x=11;
-	public static void main(String[] args) {
-		String text = "kak delat' programmirovanie";
-        String str = "delat' p";
+	public static void kek() {
+		String text = "ababababababababa";
+        String str = "ab";
         
 		System.out.println(Indexof(text,str));
 		

@@ -7,17 +7,17 @@ public class Tree {
 	Node root; 
 	
 	/**
-	 * Вставка элементов в дерево
+	 * Вставка элементов 
 	 * @param node
 	 * @param key
 	 * @return
 	 */
 	Node insert(Node node, double key) { 
 		  
-        /* 1.  Perform the normal BST insertion */
-        if (node == null) 
+        /* В случае если узла нет создаем корень */
+        if (node == null) {
             return (new Node(key)); 
-  
+        }
         if (key < node.key) 
             node.left = insert(node.left, key); 
         else if (key > node.key) 
@@ -34,6 +34,7 @@ public class Tree {
         if (node!= null) { 
             System.out.println(node.key + " "); 
             preOrder(node.left); 
+           
             preOrder(node.right); 
            
         } 
